@@ -80,9 +80,9 @@ class label_tool:
         self.fig_plot_vm.set_title('Please Load Data File')
         self.fig_plot_vm.set_xlabel('Timestamp')
         self.fig_plot_vm.set_ylabel('VM Counts')
-        self.fig_plot_vm.axhline(y=100, color='r', linestyle='--', alpha=0.5, linewidth=1)  #TODO: modifiable
-        self.fig_plot_vm.axhline(y=500, color='r', linestyle='--', alpha=0.5, linewidth=1)  #TODO: modifiable
-        self.fig_plot_vm.set_ylim([0, 3000])                                                #TODO: modifiable
+        self.fig_plot_vm.axhline(y=100, color='r', linestyle='--', alpha=0.5, linewidth=1)
+        self.fig_plot_vm.axhline(y=500, color='r', linestyle='--', alpha=0.5, linewidth=1)
+        self.fig_plot_vm.set_ylim([0, 3000])
         self.fig_plot_vm.yaxis.set_ticks_position('both')
         self.fig_plot_vm.tick_params(labelright=True)
         self.fig_plot_vm.grid(True, linewidth=0.2)
@@ -177,7 +177,7 @@ class label_tool:
         # left click and hold to pan plot
         if event.button == 1:
             self.button_1_pressed = True
-            self.mouse_event = event  # TODO can this be just self.mouse_event
+            self.mouse_event = event
             self.pan_init_xlim = self.fig_plot_vm.get_xlim()
         # right click to enter popup menu for labeling
         if event.button == 3:
