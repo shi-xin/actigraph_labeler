@@ -66,7 +66,7 @@ class label_tool:
             selectbackground="purple")
         self.file_list.grid(column=1, row=1,sticky=(N,W,E,S))
         self.file_list.bind("<Double-Button-1>", self.read_selected_file)
-        # canvas & figure
+        # canvas & figure17:00
         self.fig = Figure()
         self.plot_canvas = FigureCanvasTkAgg(self.fig, master=self.lower_frame)
         self.plot_canvas._tkcanvas.pack(fill=BOTH, expand=True)
@@ -349,13 +349,13 @@ class label_tool:
             elif sleep_labels['state'].iloc[i] == 'e':
                 self.dataframe.loc[self.dataframe.ts_num >= sleep_labels['where'].iloc[i], 'sleep'] = 0
         # process discard marker
-        self.dataframe['discard'] = self.dataframe.shape[0]*[1]
+        self.dataframe['discard'] = self.dataframe.shape[0]*[0]
         discard_labels = self.labels[self.labels['state'].isin(['db', 'da'])]
         for i in range(0, discard_labels.shape[0]):
             if discard_labels['state'].iloc[i] == 'db':
-                self.dataframe.loc[self.dataframe.ts_num > discard_labels['where'].iloc[i], 'discard'] = 0
+                self.dataframe.loc[self.dataframe.ts_num < discard_labels['where'].iloc[i], 'discard'] = 1
             elif discard_labels['state'].iloc[i] == 'da':
-                self.dataframe.loc[self.dataframe.ts_num >= discard_labels['where'].iloc[i], 'discard'] = 1
+                self.dataframe.loc[self.dataframe.ts_num > discard_labels['where'].iloc[i], 'discard'] = 1
         self.dataframe = self.dataframe[['timestamp', 'axis1', 'axis2', 'axis3', 'vm', 'sleep', 'discard']]  # put it in the end
 
     def read_selected_file(self, event):
